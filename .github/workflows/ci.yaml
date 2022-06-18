@@ -5,7 +5,7 @@ on:
       - 'main'
       - 'feature/**'
 jobs:
-  go-test:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,6 +15,19 @@ jobs:
           check-latest: true
       - name: Check go version
         run: go version
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v3
       - name: Testing go modules
         run: go test ./...
+        working-directory: ./src
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v3
+      - name: Linting go modules
+        run: go vet
         working-directory: ./src
