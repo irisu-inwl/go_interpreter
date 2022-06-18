@@ -1,8 +1,9 @@
 name: go-test
 on: 
   push:
-    paths:
-      - **.go
+    branches:
+      - 'main'
+      - 'feature/**'
 jobs:
   go-test:
     runs-on: ubuntu-latest
