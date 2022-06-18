@@ -1,0 +1,11 @@
+version: '3'
+services:
+  interpreter:
+    image: go-interpreter
+    build: .
+    volumes: 
+      - ./src/:/opt/myapp/
+    tty: true
+    working_dir: /opt/myapp/
+    command: bash
+    # command: go test ./...
